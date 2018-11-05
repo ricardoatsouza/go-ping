@@ -84,6 +84,8 @@ func NewPinger(addr string) (*Pinger, error) {
 		ipv4 = false
 	}
 
+	rand.Seed(time.Now().UTC().UnixNano())
+
 	return &Pinger{
 		ipaddr:   ipaddr,
 		addr:     addr,
@@ -93,7 +95,7 @@ func NewPinger(addr string) (*Pinger, error) {
 		id:       rand.Intn(0xffff),
 		network:  "udp",
 		ipv4:     ipv4,
-		Size:    timeSliceLength,
+		Size:     timeSliceLength,
 
 		done: make(chan bool),
 	}, nil
