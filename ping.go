@@ -323,6 +323,9 @@ func (p *Pinger) run() {
 				wg.Wait()
 				return
 			}
+
+			// Sleeps for a bit to avoid spikes in CPU usage when the answer from the host is too slow
+			time.Sleep(time.Duration(100) * time.Millisecond)
 		}
 	}
 }
